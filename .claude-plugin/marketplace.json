@@ -1,0 +1,17 @@
+{
+  "name": "resume-osint",
+  "description": "Resume OSINT: an agent skill that checks resume claims against public sources.",
+  "owner": {
+    "name": "Patrick Hughes",
+    "url": "https://bmdpat.com"
+  },
+  "plugins": [
+    {
+      "name": "resume-osint",
+      "source": "./",
+      "description": "Check a candidate's resume against public sources before an interview. Every finding cites a source and becomes a neutral interview question.",
+      "category": "productivity",
+      "homepage": "https://bmdpat.com/tools/resume-osint"
+    }
+  ]
+}

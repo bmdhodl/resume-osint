@@ -1,0 +1,35 @@
+name: Check
+
+# SKILL.md is a copy of https://bmdpat.com/tools/resume-osint/SKILL.md.
+# The daily run fails when the published file changes and the copy here does not.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "23 13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Run the check tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Compare SKILL.md with the published file
+        run: python3 scripts/sync_skill.py --check
+
+      - name: Validate the plugin and marketplace with Claude Code
+        run: npx --yes @anthropic-ai/claude-code@2.1.296 plugin validate .

@@ -1,0 +1,12 @@
+{
+  "name": "resume-osint",
+  "description": "Check a candidate's resume against public sources before an interview. Every finding cites a source and becomes a neutral interview question.",
+  "author": {
+    "name": "Patrick Hughes",
+    "url": "https://bmdpat.com"
+  },
+  "homepage": "https://bmdpat.com/tools/resume-osint",
+  "repository": "https://github.com/bmdhodl/resume-osint",
+  "license": "MIT",
+  "keywords": ["hiring", "recruiting", "resume", "osint", "due-diligence", "skill"]
+}
